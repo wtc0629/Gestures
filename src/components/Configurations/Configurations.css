@@ -2,20 +2,22 @@ h1 {
     color:rgb(0, 47, 255);
     text-align:center;
     font-family:"Arial", Times, Monospace;
-    font-size:40px;
+    font-size:60px;
   }
 
 .time1{
     text-align:center;
-    font-size:40px;
+    font-size:30px;
 }
 
 .time2{
     text-align:center;
+    font-size:30px;
 }
 
 .time3{
     text-align:center;
+    font-size:30px;
 }
 
 .form-label{
