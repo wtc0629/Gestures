@@ -1,4 +1,5 @@
 import React from 'react';
+import './Ready.css';
 import GestureTime from '../GestureTime/GestureTime';
 import { createRoot } from 'react-dom/client';
 import Button from 'react-bootstrap/Button';
@@ -76,9 +77,9 @@ class Ready extends React.Component {
         return (
         <div>
             <h1>Ready to gesture {this.props.gestures[0]}!</h1>
-            <h1>{this.state.time}</h1>
-            <Button onClick={this.pauseBtn}>Pause!</Button>
-            <Button onClick={this.stop}>Stop and go back!</Button>
+            <h2>{this.state.time}</h2>
+            <Button className="pauseBtn" onClick={this.pauseBtn}>Pause!</Button>
+            <Button className="stopBtn" onClick={this.stop}>Stop and go back!</Button>
         </div>
             
         );

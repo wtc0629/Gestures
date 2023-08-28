@@ -197,7 +197,7 @@ class Configurations extends React.Component {
             <Form.Check inline label="Choose All" name="chooseAll" type="checkbox" id="chooseAll" onChange={this.chooseAll} />
 
           
-            <Button onClick={this.startCheck}>Start and export csv data!</Button>
+            <Button className="startBtn" onClick={this.startCheck}>Start and export csv data!</Button>
           
             </div>
           

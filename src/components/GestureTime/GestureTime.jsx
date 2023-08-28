@@ -1,4 +1,5 @@
 import React from 'react';
+import './GestureTime.css';
 import { createRoot } from 'react-dom/client';
 import Ready from '../Ready/Ready';
 import Configurations from '../Configurations/Configurations';
@@ -98,9 +99,9 @@ class GestureTime extends React.Component {
         return (
         <div>
             <h1>Gesture {this.props.gestures[0]}！ (still remain {this.props.remainTime} times) </h1>
-            <h1>{this.state.time}</h1>
-            <Button onClick={this.pauseBtn}>Pause!</Button>
-            <Button onClick={this.stop}>Stop and go back!</Button>
+            <h2>{this.state.time}</h2>
+            <Button className="pauseBtn" onClick={this.pauseBtn}>Pause!</Button>
+            <Button className="stopBtn" onClick={this.stop}>Stop and go back!</Button>
             </div>
             
         );
