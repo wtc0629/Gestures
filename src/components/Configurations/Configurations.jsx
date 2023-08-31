@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import './Configurations.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CsvExportor from "csv-exportor";
 import Ready from '../Ready/Ready';
 import { createRoot } from 'react-dom/client';
+import examplepicture from '../../videos/examplevideo.png';
+import horizontalpath from '../../videos/horizontal.mp4';
+import fasthorizontalpath from '../../videos/fasthorizontal.mp4';
+import verticalpath from '../../videos/vertical.mp4';
+import fastverticalpath from '../../videos/fastVertical.mp4';
+import farandnearpath from '../../videos/farandnear.mp4';
+import fastNearpath from '../../videos/fastNear.mp4';
+import starpath from '../../videos/star.mp4';
+import faststarpath from '../../videos/fastStar.mp4';
+import smallcirclepath from '../../videos/smallcircle.mp4';
+import bigcirclepath from '../../videos/bigcircle.mp4';
+import {
+  Player,
+  ControlBar,
+  PlayToggle, 
+  ReplayControl, 
+  ForwardControl,  
+  CurrentTimeDisplay,
+  TimeDivider,
+  PlaybackRateMenuButton,  
+  VolumeMenuButton
+} from 'video-react';
+import "../../../node_modules/video-react/dist/video-react.css"; 
 
 
 class Configurations extends React.Component {
@@ -185,20 +208,121 @@ class Configurations extends React.Component {
 
 
             <Form.Check inline label="Horizontal move" name="horizontal" type="checkbox" id="horizontal" checked={this.state.horizontal} onChange={this.choosehorizontal} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={horizontalpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Fast horizontal move" name="fastHorizontal" type="checkbox" id="fastHorizontal" checked={this.state.fastHorizontal} onChange={this.choosefastHorizontal} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={fasthorizontalpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
+              
             <Form.Check inline label="Vertical move" name="vertical" type="checkbox" id="vertical" checked={this.state.vertical} onChange={this.choosevertical} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={verticalpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Fast vertical move" name="fastVertical" type="checkbox" id="fastVertical" checked={this.state.fastVertical} onChange={this.choosefastVertical} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={fastverticalpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Near to far move" name="neartofar" type="checkbox" id="neartofar" checked={this.state.neartofar} onChange={this.chooseneartofar} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={farandnearpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Fast near to far move" name="fastNeartofar" type="checkbox" id="fastNeartofar" checked={this.state.fastNeartofar} onChange={this.choosefastNeartofar} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={fastNearpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Star" name="star" type="checkbox" id="star" checked={this.state.star} onChange={this.choosestar} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={starpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Fast star" name="fastStar" type="checkbox" id="fastStar" checked={this.state.fastStar} onChange={this.choosefastStar} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={faststarpath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Small circle" name="smallCircle" type="checkbox" id="smallCircle" checked={this.state.smallCircle} onChange={this.choosesmallCircle} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={smallcirclepath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Large circle" name="largeCircle" type="checkbox" id="largeCircle" checked={this.state.largeCircle} onChange={this.chooselargeCircle} />
+            <Fragment><div className="videos">   <Player ref={c => {this.player = c;}} poster={examplepicture}>
+            <source src={bigcirclepath} type="video/mp4"/>
+            <ControlBar autoHide={false} disableDefaultControls={false}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.2} />
+              <PlayToggle />
+              <CurrentTimeDisplay order={4.1} />
+              <TimeDivider order={4.2} />
+              <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1} />
+              <VolumeMenuButton /></ControlBar></Player></div></Fragment>
             <Form.Check inline label="Choose All" name="chooseAll" type="checkbox" id="chooseAll" onChange={this.chooseAll} />
 
           
             <Button className="startBtn" onClick={this.startCheck}>Start and export csv data!</Button>
-          
+            
             </div>
           
     );
