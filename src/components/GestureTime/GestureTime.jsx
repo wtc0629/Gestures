@@ -2,8 +2,10 @@ import React from 'react';
 import './GestureTime.css';
 import { createRoot } from 'react-dom/client';
 import Ready from '../Ready/Ready';
+import Videos from '../Videos/Videos';
 import Configurations from '../Configurations/Configurations';
 import Button from 'react-bootstrap/Button';
+import CsvExportor from "csv-exportor";
 
 
 class GestureTime extends React.Component {
@@ -13,12 +15,25 @@ class GestureTime extends React.Component {
             time:0,
             pause:false,
             stop:false,
-            
+            dataframe:this.props.df,
         };
       }
+      componentWillMount = () => {
+        const bodyElt = document.querySelector("body");
+        bodyElt.style.backgroundColor = "#3afe64";
+    }
 
-      componentDidMount = () => {
+    componentDidMount = () => {
         this.countDown(this.props.gestureTime+1,this.waitTimeStateChange,this.linkTo);
+        this.timer = setInterval(function () {
+            const date= new Date();
+            const systemtime= date.getTime()
+            this.setState({dataframe:[...this.state.dataframe,
+            {gaze_timestamp_unix:systemtime/1000,process:this.props.gestures[0]+'_GestureTime'+this.props.remainTime},
+            {gaze_timestamp_unix:(systemtime+33)/1000,process:this.props.gestures[0]+'_GestureTime'+this.props.remainTime},
+            {gaze_timestamp_unix:(systemtime+66)/1000,process:this.props.gestures[0]+'_GestureTime'+this.props.remainTime}
+          ]})
+        }.bind(this), 100);
     }
 
     countDown = (waitTime,doSomethingDuringCountDown,doSomethingAfterCountDown) => {
@@ -30,6 +45,12 @@ class GestureTime extends React.Component {
             if(this.state.stop) {
                 const container = document.getElementById('root');
                 const root = createRoot(container); 
+                const headers =["gaze_timestamp_unix","process"];
+                CsvExportor.downloadCsv(
+                    this.state.dataframe,
+                    { header:headers},
+                    "instruction.csv"
+                );
                 root.render(<Configurations />);
                 return;
             }
@@ -59,13 +80,15 @@ class GestureTime extends React.Component {
             const container = document.getElementById('root');
             const root = createRoot(container); 
             root.render(<Ready gestureTime={this.props.gestureTime} gestureFrequency={this.props.gestureFrequency} pauseTime={this.props.pauseTime} 
-                    gesturesNumber={this.props.gesturesNumber} gestures={this.props.gestures} remainTime={this.props.remainTime-1}/>);
+                    gesturesNumber={this.props.gesturesNumber} gestures={this.props.gestures} remainTime={this.props.remainTime-1} df={this.state.dataframe}/>);
 
         }else {
                 if(this.props.gestures.length === 1){
                     const container = document.getElementById('root');
                     const root = createRoot(container); 
-                    root.render(<Configurations />);
+                    //root.render(<Configurations />);
+                    root.render(<Videos gestureTime={this.props.gestureTime} gestureFrequency={this.props.gestureFrequency} pauseTime={this.props.pauseTime} 
+                        gesturesNumber={newGesturesNumber} gestures={newGestures} remainTime={this.props.gestureFrequency-1} df={this.state.dataframe}/>); 
                 }else{
                 for(let i=1;i<this.props.gestures.length;i++){
                     newGestures=[...newGestures,this.props.gestures[i]];
@@ -73,8 +96,8 @@ class GestureTime extends React.Component {
                 newGesturesNumber=this.props.gesturesNumber-1;
                 const container = document.getElementById('root');
                 const root = createRoot(container); 
-                root.render(<Ready gestureTime={this.props.gestureTime} gestureFrequency={this.props.gestureFrequency} pauseTime={this.props.pauseTime} 
-                    gesturesNumber={newGesturesNumber} gestures={newGestures} remainTime={this.props.gestureFrequency-1}/>); 
+                root.render(<Videos gestureTime={this.props.gestureTime} gestureFrequency={this.props.gestureFrequency} pauseTime={this.props.pauseTime} 
+                    gesturesNumber={newGesturesNumber} gestures={newGestures} remainTime={this.props.gestureFrequency-1} df={this.state.dataframe}/>); 
                 }  
 
         }
@@ -95,9 +118,9 @@ class GestureTime extends React.Component {
     }
     
     render() {
-       
+        //console.log(2,this.props.gestures, this.props.gesturesNumber)
         return (
-        <div>
+        <div className="gestureTime">
             <h1>Gesture {this.props.gestures[0]}！ (still remain {this.props.remainTime} times) </h1>
             <h2>{this.state.time}</h2>
             <Button className="pauseBtn" onClick={this.pauseBtn}>Pause!</Button>
